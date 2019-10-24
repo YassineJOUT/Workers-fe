@@ -1,11 +1,11 @@
 import React from 'react';
-import RegistrationPage from './components/RegistrationPage';
+import LoginPage from './components/LoginPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-        <RegistrationPage />
+        <LoginPage />
     </div>
   );
 }
