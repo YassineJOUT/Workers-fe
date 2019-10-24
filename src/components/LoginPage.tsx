@@ -9,7 +9,7 @@ const LoginPage : React.FC = () => {
             <Container>
 
             <Row style={{ marginTop : '100px'}}>
-                <Col md={{ span: 4, offset: 3 }}>
+                <Col md={{ span: 4, offset: 4 }}>
                     <Form>
                         
                         <Form.Group  className='mt-4' controlId="formBasicEmail">
@@ -36,7 +36,7 @@ const LoginPage : React.FC = () => {
                             </Col>
                             <Col >
                            
-                            <a href="#" className='float-sm-right' >Forgot password</a>
+                            <a href="/forgotten-password" className='float-sm-right' >Forgot password</a>
                             </Col>
                         </Row>
                         <Button size="sm"  className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit">
@@ -44,7 +44,7 @@ const LoginPage : React.FC = () => {
                         </Button>
                         <br />
                         
-                        Or <a href="#">Register now</a>
+                        Or <a href="/register">Register now</a>
                     </Form>
                 </Col>
             </Row>

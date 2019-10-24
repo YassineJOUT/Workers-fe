@@ -9,7 +9,7 @@ const RegistrationPage : React.FC = () => {
             <Container>
 
             <Row style={{ marginTop : '100px'}}>
-                <Col md={{ span: 3, offset: 4 }}>
+                <Col md={{ span: 4, offset: 4 }}>
                     <Form>
                         <Form.Group className='mt-4' controlId="formBasicText">
                              <span className='pl-3 pt-1 position-absolute' >
@@ -43,7 +43,7 @@ const RegistrationPage : React.FC = () => {
                         </Button>
                         <br />
                         
-                        Or <a href="#">get connected</a>
+                        Or <a href="/login">get connected</a>
                     </Form>
                 </Col>
             </Row>

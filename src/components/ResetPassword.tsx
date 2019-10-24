@@ -1,7 +1,7 @@
 import React from 'react'
 import {Form,Button,Row,Col, Container} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope,faUser,faLock } from '@fortawesome/free-solid-svg-icons'
+import { faLock } from '@fortawesome/free-solid-svg-icons'
 
 const ResetPassword  : React.FC = () => {
     return (
@@ -9,7 +9,7 @@ const ResetPassword  : React.FC = () => {
             <Container>
 
             <Row style={{ marginTop : '100px'}}>
-                <Col md={{ span: 3, offset: 4 }}>
+                <Col md={{ span: 4, offset: 4 }}>
                     <Form>
                         
                         <Form.Group  className='mt-4' controlId="formBasicPassword">
