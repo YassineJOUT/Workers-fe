@@ -1,15 +1,10 @@
 import React from 'react'
-import {Form,Button,Row,Col, Container} from 'react-bootstrap'
+import {Form,Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope,faUser,faLock } from '@fortawesome/free-solid-svg-icons'
 
 const RegistrationPage : React.FC = () => {
     return (
-        <div>
-            <Container>
-
-            <Row style={{ marginTop : '100px'}}>
-                <Col md={{ span: 4, offset: 4 }}>
                     <Form>
                         <Form.Group className='mt-4' controlId="formBasicText">
                              <span className='pl-3 pt-1 position-absolute' >
@@ -43,12 +38,9 @@ const RegistrationPage : React.FC = () => {
                         </Button>
                         <br />
                         
-                        Or <a href="/login">get connected</a>
+                        Or <a href="/login  ">get connected</a>
                     </Form>
-                </Col>
-            </Row>
-            </Container>
-        </div>
+               
     );
 };
 

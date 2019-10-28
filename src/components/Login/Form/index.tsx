@@ -1,16 +1,11 @@
 import React from 'react'
-import {Form,Button,Row,Col, Container} from 'react-bootstrap'
+import {Form,Button,Row,Col} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope,faLock } from '@fortawesome/free-solid-svg-icons'
 
 const LoginPage : React.FC = () => {
     return (
-        <div>
-            <Container>
-
-            <Row style={{ marginTop : '100px'}}>
-                <Col md={{ span: 4, offset: 4 }}>
-                    <Form>
+        <Form>
                         
                         <Form.Group  className='mt-4' controlId="formBasicEmail">
                             <span className='pl-3 pt-1 position-absolute' >
@@ -46,10 +41,6 @@ const LoginPage : React.FC = () => {
                         
                         Or <a href="/register">Register now</a>
                     </Form>
-                </Col>
-            </Row>
-            </Container>
-        </div>
     );
 };
 
