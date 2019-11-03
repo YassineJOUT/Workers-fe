@@ -1,7 +1,8 @@
-import { userDetailsState } from "./types";
+import { userDetailsState } from "./PasswordRedifinition/types";
 import { combineReducers } from "redux";
-import { LoginReducer,PasswordChangereducer,
-    PasswordResetreducer,SignupReducer } from "./reducer";
+import { PasswordChangereducer} from "./PasswordRedifinition/reducer";
+import { LoginReducer } from "./Login/reducer";
+import { SignupReducer } from "./Registration/reducer";
 
 
 export interface ApplicationState {
@@ -11,6 +12,5 @@ export interface ApplicationState {
 export const RootReducer = () => combineReducers({
     login: LoginReducer,
     changePassword: PasswordChangereducer,
-    resetPassword: PasswordResetreducer,
     signUp: SignupReducer,
 });
