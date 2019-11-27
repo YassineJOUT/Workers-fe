@@ -1,5 +1,5 @@
 import { Reducer, AnyAction } from "redux";
-import {userDetailsState,LoginActionTypes} from './types';
+import {userDetailsState,LoginActionTypes} from '../types';
 import { createReducer} from '../../utilities/ReducerHelper';
 
 const initialState: userDetailsState = {

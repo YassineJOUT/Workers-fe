@@ -1,5 +1,5 @@
 import { action } from 'typesafe-actions';
-import { PasswordChnageActionTypes, UserLogin, userDetails } from './types'
+import { PasswordChnageActionTypes, UserLogin, userDetails } from '../types'
 
 // change password 
 

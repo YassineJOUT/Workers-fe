@@ -1,5 +1,5 @@
 import { action } from 'typesafe-actions';
-import { RigisterActionTypes, UserLogin, userDetails } from './types'
+import { RigisterActionTypes, UserLogin, userDetails } from '../types'
 
 // user registration
 

@@ -1,6 +1,6 @@
 import { action } from 'typesafe-actions';
 import { LoginActionTypes,
-         UserLogin, userDetails } from './types'
+         UserLogin, userDetails } from '../types'
 
 
 // user login

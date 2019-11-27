@@ -15,8 +15,4 @@ const Layout: React.SFC<Props> = ({ children }) => (
     </Container>
 );
 
-<<<<<<< HEAD
 export default Layout;
-=======
-export default Layout;
->>>>>>> 0fa0ffe6572b07e92d366cbb0ec1bcc8a7ce1d77
