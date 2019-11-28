@@ -4,10 +4,13 @@ import { LoginActionTypes,
 
 
 // user login
-export const userLogin = (user: UserLogin) => action(
+export const userLogin = (user: UserLogin) => {
+    console.log(user);
+   return action(
     LoginActionTypes.USER_LOGIN,
     user
-);
+)}
+;
 
 
 export const userLoginSuccess = (details: userDetails) => action(

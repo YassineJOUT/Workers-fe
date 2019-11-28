@@ -12,8 +12,6 @@ export interface ApplicationState {
 }
 
 export const RootReducer = (history: History) => combineReducers({
-    login: LoginReducer ,
-    changePassword: PasswordChangereducer,
-    signUp: SignupReducer,
+    user: LoginReducer ,
     router: connectRouter(history),
 });
