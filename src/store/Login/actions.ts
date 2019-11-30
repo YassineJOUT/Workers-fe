@@ -1,25 +1,51 @@
 import { action } from 'typesafe-actions';
-import { LoginActionTypes,
-         UserLogin, userDetails } from '../types'
+import { ICredentials,USER_LOGIN,USER_LOGIN_ERROR,USER_LOGIN_SUCCESS,LoginActionsType } from './types'
+import { history } from '../../utilities/history';
+import { Dispatch } from 'redux';
+import { userService } from '../../services/users.service'
+import { userDetails } from '../types';
 
 
 // user login
-export const userLogin = (user: UserLogin) => {
-    console.log(user);
+export const userLogin = (credentials: ICredentials): LoginActionsType => {
    return action(
-    LoginActionTypes.USER_LOGIN,
-    user
+    USER_LOGIN,
+    credentials
 )}
 ;
 
 
-export const userLoginSuccess = (details: userDetails) => action(
-    LoginActionTypes.USER_LOGIN_SUCCESS,
-    details
+export const userLoginSuccess = (user: userDetails): LoginActionsType => action(
+    USER_LOGIN_SUCCESS,
+    user
 );
 
 
-export const userLoginError = (errorMsg: string) => action(
-    LoginActionTypes.USER_LOGIN_ERROR,
+export const userLoginError = (errorMsg: string): LoginActionsType => action(
+    USER_LOGIN_ERROR,
     errorMsg
 );
+
+export const login = (email: string, password: string) => {
+    return (dispatch: Dispatch<LoginActionsType>) => {
+        const user: ICredentials = {
+            email,
+            password
+        }
+        console.log('login Dispatched');
+        dispatch(userLogin(user));
+        userService.login(email,password).then(
+            u => {
+                console.log('Login success dispatched');
+                console.log(u);
+                dispatch(userLoginSuccess({email: u.data.user.email,username: u.data.user.username,id: u.data.user.id}));
+                history.push('/profile');
+            }
+        ).catch(err => {
+            console.log('login error dispatched');
+            console.log(err);
+            dispatch(userLoginError('Login was unsucceeded'));
+        });
+
+        }
+}

@@ -2,26 +2,25 @@ import { Reducer, AnyAction } from "redux";
 import {userDetailsState,LoginActionTypes} from '../types'
 import { createReducer} from '../../utilities/ReducerHelper'
 const initialState: userDetailsState = {
-    details: {
+    user:{
         username: "",
         email: "",
-        password: ""
-    },
-    connected: false,
-    error: ""
+        password: ""},
+    
+    connected: false
 }
 
 //Login
 const doLogin = (state = initialState, action: AnyAction) => {
-    return {...state,details: action.payload };
+    return {...state,user: action.payload };
 }
 
 const loginSuccess = (state = initialState, action: AnyAction) => {
-    return { ...state, connected: true, details: action.payload };
+    return { ...state, connected: true, user: action.payload };
 }
 
 const loginFailed = (state = initialState, action: AnyAction) => {
-    return { ...state, connected: false, error: action.payload };
+    return { ...state, connected: false };
 }
 
 const LOGIN_HANDLERS = {

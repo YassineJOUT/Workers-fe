@@ -25,15 +25,20 @@ export interface UserLogin {
 }
 
 export interface userDetails {
+    id: string,
     username : string,
     email : string,
-    password : string,
+    password? : string,
     image? : string,
     age? : number
 }
 
 export interface userDetailsState {
-    details : userDetails,
-    connected : boolean,
-    error : string
+    user:{username : string,
+    email : string,
+    password : string,
+    image? : string,
+    age? : number},
+    connected: boolean
+    
 }

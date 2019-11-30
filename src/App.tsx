@@ -5,16 +5,18 @@ import ForgottenPassord from './components/ForgottenPassword';
 import ResetPassword from './components/ResetPassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Router,Route } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { history } from './utilities/history';
 import { configureStore } from './configureStore';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { ApplicationState } from './store';
+import Profile from './components/profile';
 
 const App: React.FC = () => {
-  const history = createBrowserHistory();
+  
 
   const store: Store<ApplicationState> = configureStore(history);
+  
   return (
     <Provider store={store}>
 
@@ -26,6 +28,7 @@ const App: React.FC = () => {
             <Route path="/register/" component={Registration} />
             <Route path="/forgotten-password" component={ForgottenPassord} />
             <Route path="/reset-password" component={ResetPassword} />
+            <Route path="/profile" component={Profile} />
 
         </Router>
             

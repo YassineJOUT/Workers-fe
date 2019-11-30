@@ -3,13 +3,14 @@ import {userDetailsState,RigisterActionTypes} from '../types'
 import { createReducer} from '../../utilities/ReducerHelper'
 
 const initialState: userDetailsState = {
-    details: {
+    
+    user:{
         username: "",
         email: "",
-        password: ""
-    },
-    connected: false,
-    error: ""
+        password: ""},
+    
+    connected: false
+   
 }
 
 
