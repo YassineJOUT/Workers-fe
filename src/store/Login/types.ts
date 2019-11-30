@@ -9,10 +9,6 @@ export interface ICredentials{
     password: string
 }
 
-export interface LoginState {
-    connected: boolean
-}
-
 
 interface UserLoginAction {
     type: typeof USER_LOGIN
@@ -21,7 +17,7 @@ interface UserLoginAction {
   
 interface UserLoginSuccessAction {
     type: typeof USER_LOGIN_SUCCESS
-    payload: userDetails
+    payload: {user: userDetails,token: string}
 }
   
 interface UserLoginErrorAction {
