@@ -1,32 +1,24 @@
 import { Reducer, AnyAction } from "redux";
-import {userDetailsState,RigisterActionTypes} from '../types'
+import { RigisterActionTypes, registerState} from '../types'
 import { createReducer} from '../../utilities/ReducerHelper'
 
-const initialState: userDetailsState = {
-    
-    user:{
-        username: "",
-        email: "",
-        password: ""},
-    
-    connected: false
+const initialState: registerState = {
+    isRegistering: false,
+    error: ''
    
 }
-
-
-
 // Register
 
 const doRegister = (state = initialState, action: AnyAction) => {
-    return {...state,details: action.payload };
+    return {...state,isRegistering: true};
 }
 
 const registerSuccess = (state = initialState, action: AnyAction) => {
-    return { ...state, connected: true, details: action.payload };
+    return { ...state, isRegistering: false };
 }
 
 const registerFailed = (state = initialState, action: AnyAction) => {
-    return { ...state, connected: false, error: action.payload };
+    return { ...state, isRegistering: false, error: action.payload };
 }
 
 const REGISTER_HANDLERS = {
@@ -38,5 +30,5 @@ const REGISTER_HANDLERS = {
 // 
 
 
-const SignupReducer: Reducer<userDetailsState> = createReducer(initialState, REGISTER_HANDLERS);
+const SignupReducer: Reducer<registerState> = createReducer(initialState, REGISTER_HANDLERS);
 export {  SignupReducer  };

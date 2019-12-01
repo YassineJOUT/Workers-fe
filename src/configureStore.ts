@@ -8,17 +8,25 @@ import { LoadState,SaveState } from './utilities/localStorage';
 
 export const configureStore = (history: History): Store<ApplicationState> => {
     let initialState: ApplicationState = {
-        user: {
-            connected: false,
-            user: {
+        login: {
+            error: '',
+            isLoggedIn: false,
+            token: '',
+            userInfo:{
                 email: '',
-                password: '',
+                id: '',
                 username: ''
             }
+        },
+        register:{
+            isRegistering: false,
+            error: ''
         }
     };
     let savedState = LoadState();
     if(savedState === undefined ) savedState = initialState;
+    console.log('saved state');
+    console.log(savedState);
     const store =  createStore(
         RootReducer(history),
         savedState,composeWithDevTools(

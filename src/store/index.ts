@@ -1,6 +1,5 @@
-import { userDetailsState } from "./types";
+import { loginState, registerState } from "./types";
 import { combineReducers } from "redux";
-import { PasswordChangereducer} from "./PasswordRedifinition/reducer";
 import { LoginReducer } from "./Login/reducer";
 import { SignupReducer } from "./Registration/reducer";
 import { connectRouter } from "connected-react-router";
@@ -8,10 +7,12 @@ import { History } from "history";
 
 
 export interface ApplicationState {
-    user: userDetailsState
+    login: loginState,
+    register: registerState
 }
 
 export const RootReducer = (history: History) => combineReducers({
-    user: LoginReducer,
+    login: LoginReducer,
+    register: SignupReducer,
     router: connectRouter(history),
 });

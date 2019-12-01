@@ -19,6 +19,18 @@ export enum PasswordChnageActionTypes  {
     PWD_CHANGE_ERROR = 'PWD_CHANGE_ERROR'
 }
 
+export interface loginState{
+    userInfo: userDetails,
+    isLoggedIn: boolean,
+    token: string,
+    error: string
+}
+
+export interface registerState{
+    isRegistering: boolean,
+    error: string
+}
+
 export interface UserLogin {
     email? : string,
     password? : string
