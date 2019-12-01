@@ -3,7 +3,7 @@ import {Form,Button,Row,Col, Container} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope} from '@fortawesome/free-solid-svg-icons'
 
-const LoginPage : React.FC = () => {
+const PasswordForgotten : React.FC = () => {
     return (
         <div>
             <Container>
@@ -36,4 +36,4 @@ const LoginPage : React.FC = () => {
     );
 };
 
-export default LoginPage;
+export default PasswordForgotten;

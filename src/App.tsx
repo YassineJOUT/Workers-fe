@@ -1,8 +1,8 @@
 import React from 'react';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
-import ForgottenPassord from './components/ForgottenPassword';
-import ResetPassword from './components/ResetPassword';
+import ForgottenPassord from './components/PasswordForgotten/Form';
+import ResetPassword from './components/RessetPassword/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Router,Route } from 'react-router-dom';
 import { history } from './utilities/history';
@@ -10,7 +10,7 @@ import { configureStore } from './configureStore';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { ApplicationState } from './store';
-import Profile from './components/profile';
+import Profile from './components/Profile/profile';
 
 const App: React.FC = () => {
   

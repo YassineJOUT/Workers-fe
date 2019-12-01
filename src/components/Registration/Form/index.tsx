@@ -41,7 +41,6 @@ class RegistrationPage extends Component<IProps> {
         }
 
         if (!_.isEmpty(email) && !_.isEmpty(pwd)){
-            console.log('Submit');
                 this.props.signin(user);
         }
     }

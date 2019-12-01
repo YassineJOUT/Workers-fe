@@ -12,8 +12,6 @@ const initialState: userDetailsState = {
     
 }
 
-
-
 const doPasswordChange = (state = initialState, action: AnyAction) => {
     return {...state,user: action.payload };
 }
@@ -31,6 +29,7 @@ const PWDCHANGE_HANDLERS = {
     [LoginActionTypes.USER_LOGIN_SUCCESS]: passwordChangeSuccess,
     [LoginActionTypes.USER_LOGIN_ERROR]: passwordChangeFailed,
 }
+
 
 
 
