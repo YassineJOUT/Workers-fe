@@ -10,14 +10,13 @@ import {history} from '../../../utilities/history';
 import { userDetailsState } from '../../../store/types';
 
 interface ILoginProps{
-    email?: string,
-    password?: string,
     login: Function
 }
 
 interface ILoginStateProps {
-    user: any,
-    connected: boolean
+    userInfo: any,
+    isLoggedIn: boolean,
+    error: string,
 }
 
 type IProps = ILoginProps & ILoginStateProps;
@@ -37,12 +36,16 @@ class LoginPage extends  Component<IProps> {
     }
     render = () => {
         
-        if( this.props !== null && this.props.connected === true){
+        if( this.props !== null && this.props.isLoggedIn === true){
             history.push('/profile');
         }
         return (
             
             <Form onSubmit={this.handleSubmit}>
+                {
+                    (this.props && this.props.error !== '') ? <h2>ERROR</h2> : ''
+                }
+
                 <Form.Group className='mt-4' controlId="formBasicEmail">
                     <span className='pl-3 pt-1 position-absolute' >
                         <FontAwesomeIcon icon={faEnvelope} />
@@ -74,13 +77,13 @@ class LoginPage extends  Component<IProps> {
             </Form>
         );
     }
-    
 };
 
 
-const mapStateToProps = ({user}: ApplicationState) => ({
-    user: user.user,
-    connected: user.connected
+const mapStateToProps = (login: ILoginStateProps) => ({
+    userInfo: login.userInfo,
+    isLoggedIn: login.isLoggedIn,
+    error: login.error
 });
 
 const mapActionsToProps = { login };
