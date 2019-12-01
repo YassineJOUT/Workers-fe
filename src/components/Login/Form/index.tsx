@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
-import { ApplicationState } from '../../../store';
 import { login } from '../../../store/Login/actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import {history} from '../../../utilities/history';
-import { userDetailsState } from '../../../store/types';
 
 interface ILoginProps{
     login: Function

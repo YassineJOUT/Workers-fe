@@ -25,8 +25,6 @@ export const configureStore = (history: History): Store<ApplicationState> => {
     };
     let savedState = LoadState();
     if(savedState === undefined ) savedState = initialState;
-    console.log('saved state');
-    console.log(savedState);
     const store =  createStore(
         RootReducer(history),
         savedState,composeWithDevTools(

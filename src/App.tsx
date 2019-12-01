@@ -1,8 +1,8 @@
 import React from 'react';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
-import ForgottenPassord from './components/PasswordForgotten/Form';
-import ResetPassword from './components/RessetPassword/Form';
+import ForgottenPassord from './pages/PasswordForgotten';
+import ResetPassword from './pages/ResetPassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Router,Route } from 'react-router-dom';
 import { history } from './utilities/history';
