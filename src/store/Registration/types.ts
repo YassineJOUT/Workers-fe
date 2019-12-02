@@ -1,5 +1,3 @@
-import { userDetails } from "../types";
-
 export const USER_SIGNUP = 'USER_SIGNUP';
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS';
 export const USER_SIGNUP_ERROR = 'USER_SIGNUP_ERROR';

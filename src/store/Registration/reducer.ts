@@ -1,5 +1,6 @@
 import { Reducer, AnyAction } from "redux";
-import { RigisterActionTypes, registerState} from '../types'
+import { registerState } from '../types'
+import { USER_SIGNUP, USER_SIGNUP_ERROR, USER_SIGNUP_SUCCESS} from './types'
 import { createReducer} from '../../utilities/ReducerHelper'
 
 const initialState: registerState = {
@@ -22,9 +23,9 @@ const registerFailed = (state = initialState, action: AnyAction) => {
 }
 
 const REGISTER_HANDLERS = {
-    [RigisterActionTypes.USER_SIGNUP]: doRegister,
-    [RigisterActionTypes.USER_SIGNUP_SUCCESS]: registerSuccess,
-    [RigisterActionTypes.USER_SIGNUP_ERROR]: registerFailed,
+    [USER_SIGNUP]: doRegister,
+    [USER_SIGNUP_SUCCESS]: registerSuccess,
+    [USER_SIGNUP_ERROR]: registerFailed,
 }
 
 // 
