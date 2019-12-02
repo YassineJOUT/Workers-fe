@@ -12,13 +12,17 @@ export const PasswordForgotten = (email: string): PasswordForgottenActionsType =
     email
 )};
 
-export const PasswordForgottenSuccess = (message: string): PasswordForgottenActionsType => action(
+export const PasswordForgottenSuccess = (successMessage: string,confirmationCode: string = ''): PasswordForgottenActionsType => action(
     PASSWORD_FORGOTTEN_SUCCESS,
-    message
+    {
+        successMessage,
+        confirmationCode
+    }
+    
 );
 export const PasswordForgottenError = (errorMsg: string): PasswordForgottenActionsType => action(
     PASSWORD_FORGOTTEN_ERROR,
-    errorMsg
+    errorMsg,
 );
 export const passwordForgotten = (email: string,confirmationCode: string = '') => {
    
@@ -31,7 +35,7 @@ export const passwordForgotten = (email: string,confirmationCode: string = '') =
                 console.log(u.data);
                 if(u.data.match === false) dispatch(PasswordForgottenError('Wrong Confirmation code'));
                 else if(u.data.match === true) {
-                    dispatch(PasswordForgottenSuccess(u.data.message));
+                    dispatch(PasswordForgottenSuccess(u.data.message,confirmationCode));
                     history.push('reset-password');
                     }
                 else 

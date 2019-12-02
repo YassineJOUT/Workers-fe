@@ -6,7 +6,8 @@ const initialState: PasswordForgottenState = {
     email: '',
     successMessage: '',
     isLoading: false,
-    error: ''
+    error: '',
+    confirmationCode: '',
 }
 
 //Login
@@ -15,7 +16,7 @@ const passwordForgotten = (state = initialState, action: AnyAction) => {
 }
 
 const passwordForgottenSuccess = (state = initialState, action: AnyAction) => {
-    return { ...state, isLoading: false, successMessage: action.payload, error: ''};
+    return { ...state, isLoading: false, successMessage: action.payload.successMessage, confirmationCode: action.payload.confirmationCode, error: ''};
 }
 
 const passwordForgottenFailed = (state = initialState, action: AnyAction) => {

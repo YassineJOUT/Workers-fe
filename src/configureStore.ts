@@ -23,6 +23,7 @@ export const configureStore = (history: History): Store<ApplicationState> => {
             error: ''
         },
         passwordForgotten:{
+            confirmationCode: '',
             email: '',
             error: '',
             isLoading: false,

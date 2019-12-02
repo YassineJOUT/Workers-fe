@@ -15,7 +15,10 @@ interface PasswordForgottenAction {
   
 interface PasswordForgottenSuccessAction {
     type: typeof PASSWORD_FORGOTTEN_SUCCESS
-    payload: string
+    payload: {
+        successMessage: string,
+        confirmationCode: string
+    }
 }
   
 interface PasswordForgottenErrorAction {
