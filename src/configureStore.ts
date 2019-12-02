@@ -28,6 +28,11 @@ export const configureStore = (history: History): Store<ApplicationState> => {
             error: '',
             isLoading: false,
             successMessage: ''
+        },
+        resetPassword: {
+            error: '',
+            successMessage: '',
+            isLoading: false
         }
     };
     let savedState = LoadState();

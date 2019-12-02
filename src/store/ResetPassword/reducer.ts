@@ -1,38 +1,35 @@
 import { Reducer, AnyAction } from "redux";
-import {userDetailsState,LoginActionTypes} from '../types';
+import { PWD_RESET_ERROR,PWD_RESET_SUCCESS,PwdResetActionsType,USER_PWD_RESET} from './types';
 import { createReducer} from '../../utilities/ReducerHelper';
+import { PasswordResetState } from '../types'
 
-const initialState: userDetailsState = {
-    user:{
-        username: "",
-        email: "",
-        password: ""},
-    
-    connected: false
-    
+const initialState: PasswordResetState = {
+    isLoading: false,
+    error: '',
+    successMessage: ''
 }
 
-const doPasswordChange = (state = initialState, action: AnyAction) => {
-    return {...state,user: action.payload };
+const doPasswordReset = (state = initialState, action: AnyAction) => {
+    return {...state,isLoading: true };
 }
 
-const passwordChangeSuccess = (state = initialState, action: AnyAction) => {
-    return { ...state, connected: true, user: action.payload };
+const passwordResetSuccess = (state = initialState, action: AnyAction) => {
+    return { ...state, isLoading: false, successMessage: action.payload,error: '' };
 }
 
-const passwordChangeFailed = (state = initialState, action: AnyAction) => {
-    return { ...state, connected: false };
+const passwordResetFailed = (state = initialState, action: AnyAction) => {
+    return { ...state, isLoading: false, error: action.payload, successMessage: '' };
 }
 
 const PWDCHANGE_HANDLERS = {
-    [LoginActionTypes.USER_LOGIN]: doPasswordChange,
-    [LoginActionTypes.USER_LOGIN_SUCCESS]: passwordChangeSuccess,
-    [LoginActionTypes.USER_LOGIN_ERROR]: passwordChangeFailed,
+    [USER_PWD_RESET]: doPasswordReset,
+    [PWD_RESET_SUCCESS]: passwordResetSuccess,
+    [PWD_RESET_ERROR]: passwordResetFailed,
 }
 
 
 
 
 
-const PasswordChangereducer: Reducer<userDetailsState> = createReducer(initialState, PWDCHANGE_HANDLERS);
-export { PasswordChangereducer };
+const resetPasswordReducer: Reducer<PasswordResetState> = createReducer(initialState, PWDCHANGE_HANDLERS);
+export { resetPasswordReducer };

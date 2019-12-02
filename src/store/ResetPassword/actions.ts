@@ -1,24 +1,39 @@
 import { action } from 'typesafe-actions';
-import { PasswordChnageActionTypes, UserLogin, userDetails } from '../types'
-
+import { PWD_RESET_ERROR,USER_PWD_RESET,PwdResetActionsType,PWD_RESET_SUCCESS } from './types'
+import { Dispatch } from 'redux';
+import { userService } from '../../services/users.service';
+import { history } from '../../utilities/history';
 // change password 
 
-export const ChangePassword = (user: UserLogin) => action(
-    PasswordChnageActionTypes.USER_PWD_CHANGE,
-    user
+export const ChangePassword = () : PwdResetActionsType => action(
+    USER_PWD_RESET
 );
 
 
-export const ChangePasswordSuccess = (details: userDetails) => action(
-    PasswordChnageActionTypes.PWD_CHANGE_SUCCESS,
-    details
+export const ChangePasswordSuccess = (successMessage: string): PwdResetActionsType => action(
+    PWD_RESET_SUCCESS,
+    successMessage
 );
 
 
-export const ChangePasswordError = (errorMsg: string) => action(
-    PasswordChnageActionTypes.PWD_CHANGE_ERROR,
-    errorMsg
+export const ChangePasswordError = (error: string): PwdResetActionsType => action(
+    PWD_RESET_ERROR,
+    error
 );
 
 
 
+export const resetPassword = (email: string,confirmationCode: string, password: string) => {
+   
+    return (dispatch: Dispatch<PwdResetActionsType>) => {
+        console.log('login Dispatched');
+        dispatch(ChangePassword());
+        userService.resetPassword(email,confirmationCode,password).then(
+            u => {
+                dispatch(ChangePasswordSuccess(u.data.message));
+            }
+        ).catch(err => {
+            dispatch(ChangePasswordError('Something went wrong'));
+        });
+    }
+}

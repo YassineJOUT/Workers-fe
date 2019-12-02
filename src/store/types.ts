@@ -35,7 +35,14 @@ export interface PasswordForgottenState{
     email:string,
     successMessage: string,
     isLoading: boolean,
-    error: string
+    error: string,
+    confirmationCode: string
+}
+
+export interface PasswordResetState {
+    isLoading: boolean,
+    error: string,
+    successMessage: string
 }
 
 export interface UserLogin {
