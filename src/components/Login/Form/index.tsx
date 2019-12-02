@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Form, Button, Row, Col, Spinner } from 'react-bootstrap'
+import { Form, Button, Row, Col, Spinner, Alert } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import { login } from '../../../store/Login/actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import {history} from '../../../utilities/history';
+import { history } from '../../../utilities/history';
 
-interface ILoginProps{
+interface ILoginProps {
     login: Function
 }
 
@@ -20,29 +20,31 @@ interface ILoginStateProps {
 
 type IProps = ILoginProps & ILoginStateProps;
 
-class LoginPage extends  Component<IProps> {
+class LoginPage extends Component<IProps> {
 
-    handleSubmit = (event: React.FormEvent<HTMLFormElement> )=>{
+    handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const emailField = document.querySelector('.email') as HTMLInputElement;
         let email: string = (emailField) ? emailField.value : '';
 
         const pwdFiled = document.querySelector('.pwd') as HTMLInputElement;
         let pwd: string = (pwdFiled) ? pwdFiled.value : '';
-        if (!_.isEmpty(email) && !_.isEmpty(pwd)){
-                this.props.login(email,pwd);
+        if (!_.isEmpty(email) && !_.isEmpty(pwd)) {
+            this.props.login(email, pwd);
         }
     }
     render = () => {
-        
-        if( this.props !== null && this.props.isLoggedIn === true){
+
+        if (this.props !== null && this.props.isLoggedIn === true) {
             history.push('/profile');
         }
         return (
-            
+
             <Form onSubmit={this.handleSubmit}>
                 {
-                    (this.props && this.props.error !== '') ? <h2>ERROR</h2> : ''
+                    (this.props && this.props.error !== '') ? <Alert variant='danger'>
+                        {this.props.error}
+                    </Alert> : ''
                 }
 
                 <Form.Group className='mt-4' controlId="formBasicEmail">
@@ -64,26 +66,26 @@ class LoginPage extends  Component<IProps> {
                         </Form.Group>
                     </Col>
                     <Col >
-    
+
                         <a href="/forgotten-password" className='float-sm-right' >Forgot password</a>
                     </Col>
                 </Row>
-                {this.props.isLoading ? 
-                <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isLoading}>
-                    <Spinner
-                        as="span"
-                        animation="grow"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                    />
-                    Loading...
-                        </Button>
-                    : 
+                {this.props.isLoading ?
                     <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isLoading}>
-                    Login
+                        <Spinner
+                            as="span"
+                            animation="grow"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                        Loading...
+                        </Button>
+                    :
+                    <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isLoading}>
+                        Login
                     </Button>
-    }
+                }
                 <br />
                 Or <a href="/register">Register now</a>
             </Form>
