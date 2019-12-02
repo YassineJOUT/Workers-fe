@@ -16,7 +16,20 @@ const signUp = (user:ICredentials) => {
     return axios.post('http://localhost:3005/users/signup', params, { headers: { "Content-Type": "application/x-www-form-urlencoded" } });
 };
 
+
+
+const passwordForgotten = (email: string,confirmationCoode: string = '') => {
+    console.log('confirmationCoode service');
+    console.log(confirmationCoode);
+    let params = new URLSearchParams();
+    params.append('email', email );
+    params.append('confirmationCode',confirmationCoode);
+    return axios.post('http://localhost:3005/users/passwordForgotten', params, { headers: { "Content-Type": "application/x-www-form-urlencoded" } });
+} 
+
+
 export const userService = {
     login,
     signUp,
+    passwordForgotten
 };

@@ -31,6 +31,13 @@ export interface registerState{
     error: string
 }
 
+export interface PasswordForgottenState{
+    email:string,
+    successMessage: string,
+    isLoading: boolean,
+    error: string
+}
+
 export interface UserLogin {
     email? : string,
     password? : string
