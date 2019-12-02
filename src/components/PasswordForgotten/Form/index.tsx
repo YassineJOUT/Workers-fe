@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Alert, Spinner, ButtonToolbar } from 'react-bootstrap'
+import { Form, Button, Alert, Spinner } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons'
 import { ApplicationState } from '../../../store'

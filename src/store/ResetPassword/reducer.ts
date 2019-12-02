@@ -1,5 +1,5 @@
 import { Reducer, AnyAction } from "redux";
-import { PWD_RESET_ERROR,PWD_RESET_SUCCESS,PwdResetActionsType,USER_PWD_RESET} from './types';
+import { PWD_RESET_ERROR,PWD_RESET_SUCCESS,USER_PWD_RESET} from './types';
 import { createReducer} from '../../utilities/ReducerHelper';
 import { PasswordResetState } from '../types'
 

@@ -4,7 +4,6 @@ import { ICredentials,USER_SIGNUP,USER_SIGNUP_ERROR,USER_SIGNUP_SUCCESS, SignupA
 import { history } from '../../utilities/history';
 import { Dispatch } from 'redux';
 import { userService } from '../../services/users.service'
-import { userDetails } from '../types';
 // user registration
 
 

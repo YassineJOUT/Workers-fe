@@ -1,7 +1,5 @@
 import React from 'react'
-import {Form,Button,Row,Col, Container} from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLock } from '@fortawesome/free-solid-svg-icons'
+import { Container } from 'react-bootstrap'
 
 const Profile  : React.FC = () => {
     return (

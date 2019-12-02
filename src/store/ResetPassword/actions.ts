@@ -2,7 +2,6 @@ import { action } from 'typesafe-actions';
 import { PWD_RESET_ERROR,USER_PWD_RESET,PwdResetActionsType,PWD_RESET_SUCCESS } from './types'
 import { Dispatch } from 'redux';
 import { userService } from '../../services/users.service';
-import { history } from '../../utilities/history';
 // change password 
 
 export const ChangePassword = () : PwdResetActionsType => action(
