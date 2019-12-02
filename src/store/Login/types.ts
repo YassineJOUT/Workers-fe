@@ -12,7 +12,6 @@ export interface ICredentials{
 
 interface UserLoginAction {
     type: typeof USER_LOGIN
-    payload: ICredentials
 }
   
 interface UserLoginSuccessAction {

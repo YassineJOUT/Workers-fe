@@ -1,5 +1,6 @@
 import { Reducer, AnyAction } from "redux";
-import {loginState,LoginActionTypes} from '../types'
+import {loginState} from '../types'
+import { USER_LOGIN, USER_LOGIN_ERROR,USER_LOGIN_SUCCESS} from './types'
 import { createReducer} from '../../utilities/ReducerHelper'
 const initialState: loginState = {
     userInfo: {
@@ -28,9 +29,9 @@ const loginFailed = (state = initialState, action: AnyAction) => {
 }
 
 const LOGIN_HANDLERS = {
-    [LoginActionTypes.USER_LOGIN]: doLogin,
-    [LoginActionTypes.USER_LOGIN_SUCCESS]: loginSuccess,
-    [LoginActionTypes.USER_LOGIN_ERROR]: loginFailed,
+    [USER_LOGIN]: doLogin,
+    [USER_LOGIN_SUCCESS]: loginSuccess,
+    [USER_LOGIN_ERROR]: loginFailed,
 }
 
 
