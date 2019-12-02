@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col, Spinner } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import { login } from '../../../store/Login/actions';
@@ -15,6 +15,7 @@ interface ILoginStateProps {
     userInfo: any,
     isLoggedIn: boolean,
     error: string,
+    isLoading: boolean
 }
 
 type IProps = ILoginProps & ILoginStateProps;
@@ -67,9 +68,22 @@ class LoginPage extends  Component<IProps> {
                         <a href="/forgotten-password" className='float-sm-right' >Forgot password</a>
                     </Col>
                 </Row>
-                <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit">
-                    Log in
-                            </Button>
+                {this.props.isLoading ? 
+                <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isLoading}>
+                    <Spinner
+                        as="span"
+                        animation="grow"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
+                    Loading...
+                        </Button>
+                    : 
+                    <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isLoading}>
+                    Login
+                    </Button>
+    }
                 <br />
                 Or <a href="/register">Register now</a>
             </Form>
@@ -81,7 +95,8 @@ class LoginPage extends  Component<IProps> {
 const mapStateToProps = (login: ILoginStateProps) => ({
     userInfo: login.userInfo,
     isLoggedIn: login.isLoggedIn,
-    error: login.error
+    error: login.error,
+    isLoading: login.isLoading
 });
 
 const mapActionsToProps = { login };

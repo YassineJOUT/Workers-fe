@@ -16,7 +16,8 @@ export const configureStore = (history: History): Store<ApplicationState> => {
                 email: '',
                 id: '',
                 username: ''
-            }
+            },
+            isLoading: false
         },
         register:{
             isRegistering: false,

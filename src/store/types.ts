@@ -2,7 +2,8 @@ export interface loginState{
     userInfo: userDetails,
     isLoggedIn: boolean,
     token: string,
-    error: string
+    error: string,
+    isLoading: boolean
 }
 
 export interface registerState{

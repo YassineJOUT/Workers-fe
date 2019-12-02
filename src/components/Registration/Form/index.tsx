@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Spinner } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import { signin } from '../../../store/Registration/actions';
@@ -75,9 +75,22 @@ class RegistrationPage extends Component<IProps> {
                 <Form.Group className='mt-4' controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Accept All terms & conditions" />
                 </Form.Group>
-                <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit">
-                    Create Account
+                {this.props.isRegistring ? 
+                <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isRegistring}>
+                    <Spinner
+                        as="span"
+                        animation="grow"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
+                    Loading...
                         </Button>
+                    : 
+                    <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isRegistring}>
+                    Create account
+                        </Button>
+    }
                 <br />
 
                 Or <a href="/login  ">get connected</a>

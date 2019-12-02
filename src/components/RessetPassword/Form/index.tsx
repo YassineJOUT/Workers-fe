@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Spinner } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { resetPassword } from '../../../store/ResetPassword/actions';
@@ -47,9 +47,22 @@ class ResetPassword extends Component<IProps> {
                 </span>
                 <Form.Control size="sm" className="pl-5" type="password" placeholder="Password" />
             </Form.Group>
-            <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit">
-                Reset Password
+            {this.props.isLoading ? 
+                <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isLoading}>
+                    <Spinner
+                        as="span"
+                        animation="grow"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
+                    Loading...
                         </Button>
+                    : 
+                    <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isLoading}>
+                    Reset password
+                        </Button>
+    }
         </Form>
 
     );

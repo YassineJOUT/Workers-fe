@@ -10,22 +10,21 @@ const initialState: loginState = {
     },
     error: '',
     isLoggedIn: false,
-    token: ''
+    token: '',
+    isLoading: false
 }
 
 //Login
 const doLogin = (state = initialState, action: AnyAction) => {
-    return {...state};
+    return {...state,isLoading: true};
 }
 
 const loginSuccess = (state = initialState, action: AnyAction) => {
-    console.log('reducer');
-    console.log({ ...state, isLoggedIn: true, userInfo: action.payload.user,token: action.payload.token });
-    return { ...state, isLoggedIn: true, userInfo: action.payload.user,token: action.payload.token };
+    return { ...state, isLoggedIn: true, userInfo: action.payload.user,token: action.payload.token, isLoading: false };
 }
 
 const loginFailed = (state = initialState, action: AnyAction) => {
-    return { ...state, isLoggedIn: false, error: action.error };
+    return { ...state, isLoggedIn: false, error: action.error, isLoading: false };
 }
 
 const LOGIN_HANDLERS = {
