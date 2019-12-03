@@ -20,11 +20,13 @@ const doLogin = (state = initialState, action: AnyAction) => {
 }
 
 const loginSuccess = (state = initialState, action: AnyAction) => {
-    return { ...state, isLoggedIn: true, userInfo: action.payload.user,token: action.payload.token, isLoading: false };
+    return { ...state, isLoggedIn: true, userInfo: action.payload.user,token: action.payload.token, isLoading: false, error: '' };
 }
 
 const loginFailed = (state = initialState, action: AnyAction) => {
-    return { ...state, isLoggedIn: false, error: action.error, isLoading: false };
+    console.log('action');
+    console.log(action);
+    return { ...state, isLoggedIn: false, error: action.payload, isLoading: false };
 }
 
 const LOGIN_HANDLERS = {

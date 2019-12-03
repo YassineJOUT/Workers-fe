@@ -76,7 +76,7 @@ class PasswordForgotten extends Component<IProps> {
         let al = 0;
         al = (this.props !== null && this.props.error !== '') ? 1 : 0;
         al = (this.props !== null && this.props.successMessage !== undefined && this.props.successMessage !== '') ? 2 : 0;
-        console.log();
+       
         return (
             <Form onSubmit={this.handleSubmit}>
                 {this.alert(al)}

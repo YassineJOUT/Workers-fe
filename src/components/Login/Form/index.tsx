@@ -6,6 +6,7 @@ import { login } from '../../../store/Login/actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { history } from '../../../utilities/history';
+import { ApplicationState } from '../../../store';
 
 interface ILoginProps {
     login: Function
@@ -33,20 +34,25 @@ class LoginPage extends Component<IProps> {
             this.props.login(email, pwd);
         }
     }
+    displayAlert = (error: string) => {
+        console.log(this.props.error);
+        return <Alert variant='danger'>
+                    {error}
+             </Alert>;
+    }
     render = () => {
 
         if (this.props !== null && this.props.isLoggedIn === true) {
             history.push('/profile');
         }
+        
+
         return (
-
+        
             <Form onSubmit={this.handleSubmit}>
-                {
-                    (this.props && this.props.error !== '') ? <Alert variant='danger'>
-                        {this.props.error}
-                    </Alert> : ''
-                }
-
+            {
+             (this.props !== null && this.props.error !== '') ?  this.displayAlert(this.props.error) : "" 
+            }
                 <Form.Group className='mt-4' controlId="formBasicEmail">
                     <span className='pl-3 pt-1 position-absolute' >
                         <FontAwesomeIcon icon={faEnvelope} />
@@ -94,7 +100,7 @@ class LoginPage extends Component<IProps> {
 };
 
 
-const mapStateToProps = (login: ILoginStateProps) => ({
+const mapStateToProps = ({login}: ApplicationState) => ({
     userInfo: login.userInfo,
     isLoggedIn: login.isLoggedIn,
     error: login.error,
