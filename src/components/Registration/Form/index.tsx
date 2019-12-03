@@ -6,13 +6,14 @@ import { signin } from '../../../store/Registration/actions';
 import { ICredentials } from '../../../store/Registration/types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { ApplicationState } from '../../../store';
 
 interface ISignupProps  {
     signin: Function
 }
 
 interface ISignupStateProps {
-    isRegistring: boolean,
+    isLoading: boolean,
     error: string,
 }
 
@@ -80,8 +81,8 @@ class RegistrationPage extends Component<IProps> {
                 <Form.Group className='mt-4' controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Accept All terms & conditions" />
                 </Form.Group>
-                {this.props.isRegistring ? 
-                <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isRegistring}>
+                {this.props.isLoading ? 
+                <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isLoading}>
                     <Spinner
                         as="span"
                         animation="grow"
@@ -92,7 +93,7 @@ class RegistrationPage extends Component<IProps> {
                     Loading...
                         </Button>
                     : 
-                    <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isRegistring}>
+                    <Button size="sm" className='mb-3 btn btn-primary btn-lg btn-block' variant="primary" type="submit" disabled={this.props.isLoading}>
                     Create account
                         </Button>
     }
@@ -105,9 +106,9 @@ class RegistrationPage extends Component<IProps> {
     }
 };
 
-const mapStateToProps = (signin: ISignupStateProps) => ({
-    isRegistring: signin.isRegistring,
-    error: signin.error,
+const mapStateToProps = ({register}: ApplicationState) => ({
+    isLoading: register.isLoading,
+    error: register.error,
 });
 
 const mapActionsToProps = { signin };

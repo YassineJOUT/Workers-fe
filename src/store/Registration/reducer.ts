@@ -4,22 +4,22 @@ import { USER_SIGNUP, USER_SIGNUP_ERROR, USER_SIGNUP_SUCCESS} from './types'
 import { createReducer} from '../../utilities/ReducerHelper'
 
 const initialState: registerState = {
-    isRegistering: false,
+    isLoading: false,
     error: ''
    
 }
 // Register
 
 const doRegister = (state = initialState, action: AnyAction) => {
-    return {...state,isRegistering: true};
+    return {...state,isLoading: true};
 }
 
 const registerSuccess = (state = initialState, action: AnyAction) => {
-    return { ...state, isRegistering: false };
+    return { ...state, isLoading: false };
 }
 
 const registerFailed = (state = initialState, action: AnyAction) => {
-    return { ...state, isRegistering: false, error: action.payload };
+    return { ...state, isLoading: false, error: action.payload };
 }
 
 const REGISTER_HANDLERS = {

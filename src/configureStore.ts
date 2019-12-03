@@ -20,7 +20,7 @@ export const configureStore = (history: History): Store<ApplicationState> => {
             isLoading: false
         },
         register:{
-            isRegistering: false,
+            isLoading: false,
             error: ''
         },
         passwordForgotten:{

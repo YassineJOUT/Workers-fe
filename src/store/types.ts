@@ -7,7 +7,7 @@ export interface loginState{
 }
 
 export interface registerState{
-    isRegistering: boolean,
+    isLoading: boolean,
     error: string
 }
 
