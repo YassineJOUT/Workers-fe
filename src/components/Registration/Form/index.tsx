@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Spinner } from 'react-bootstrap'
+import { Form, Button, Spinner, Alert } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import { signin } from '../../../store/Registration/actions';
@@ -48,6 +48,11 @@ class RegistrationPage extends Component<IProps> {
     render = ()  => {
         return (
             <Form onSubmit={this.handleSubmit}>
+                {
+                    (this.props && this.props.error !== '') ? <Alert variant='danger'>
+                        {this.props.error}
+                    </Alert> : ''
+                }
                 <Form.Group className='mt-4' controlId="formBasicText">
                     <span className='pl-3 pt-1 position-absolute' >
                         <FontAwesomeIcon icon={faUser} />
