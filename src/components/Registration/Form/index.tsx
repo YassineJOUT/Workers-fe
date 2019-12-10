@@ -37,6 +37,7 @@ class RegistrationPage extends Component<IProps> {
     };
     this.props.signin(user);
     setSubmitting(false);
+    resetForm();
   };
 
   render = () => {

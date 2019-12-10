@@ -33,7 +33,10 @@ class PasswordForgotten extends Component<IProps> {
       resetForm
     }: { setSubmitting: Function; resetForm: Function }
   ) => {
+    setSubmitting(true);
     this.props.passwordForgotten(this.props.email,values.confirmationCode);
+    setSubmitting(false);
+    resetForm();
   };
   render = () => {
     const result = (

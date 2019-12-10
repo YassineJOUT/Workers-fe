@@ -31,7 +31,10 @@ class PasswordForgotten extends Component<IProps> {
       resetForm
     }: { setSubmitting: Function; resetForm: Function }
   ) => {
+    setSubmitting(true);
     this.props.passwordForgotten(values.email);
+    setSubmitting(false);
+    resetForm();
   };
 
   render = () => {

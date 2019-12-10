@@ -31,7 +31,10 @@ class LoginPage extends Component<IProps> {
       resetForm
     }: { setSubmitting: Function; resetForm: Function }
   ) => {
+    setSubmitting(true);
     this.props.login(values.email, values.password);
+    setSubmitting(false);
+    resetForm();
   };
 
   displayAlert = (error: string) => {
