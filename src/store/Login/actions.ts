@@ -21,6 +21,7 @@ export const userLoginError = (errorMsg: string): LoginActionsType => action(
     USER_LOGIN_ERROR,
     errorMsg
 );
+
 export const login = (email: string, password: string) => {
     return (dispatch: Dispatch<LoginActionsType>) => {
         const user: ICredentials = {

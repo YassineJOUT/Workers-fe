@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Form, Button, Alert, Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {  faKey } from "@fortawesome/free-solid-svg-icons";
 import { ApplicationState } from "../../../store";
 import { connect } from "react-redux";
 import { passwordForgotten } from "../../../store/PasswordForgotten/actions";
+import _ from "lodash";
 import { Formik } from "formik";
 import { PassordForgottenValidationSchema } from "../../../utilities/validationSchemas";
-import { Error } from "../../Error";
+import { Error } from '../../Error'
 
 interface IPFProps {
   passwordForgotten: Function;
@@ -24,20 +25,20 @@ interface IPFStateProps {
 type IProps = IPFProps & IPFStateProps;
 
 class PasswordForgotten extends Component<IProps> {
+ 
   handleSubmit = (
-    values: { email: string },
+    values: { confirmationCode: string;},
     {
       setSubmitting,
       resetForm
     }: { setSubmitting: Function; resetForm: Function }
   ) => {
-    this.props.passwordForgotten(values.email);
+    this.props.passwordForgotten(this.props.email,values.confirmationCode);
   };
-
   render = () => {
     const result = (
       <Formik
-        initialValues={{ email: "" }}
+        initialValues={{ confirmationCode: '' }}
         validationSchema={PassordForgottenValidationSchema}
         onSubmit={this.handleSubmit}
       >
@@ -51,25 +52,23 @@ class PasswordForgotten extends Component<IProps> {
           isSubmitting
         }) => (
           <Form onSubmit={handleSubmit}>
-            <div>
-              <Alert variant="danger">{this.props.successMessage}</Alert>
-              <Form.Group className="mt-4" controlId="formBasicEmail">
-                <span className="pl-3 pt-1 position-absolute">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </span>
-                <Form.Control
-                  size="sm"
-                  className="pl-5 email"
-                  type="email"
-                  name="email"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.email}
-                  placeholder="Email"
-                />
-              </Form.Group>
-              <Error touched={touched.email} message={errors.email} />
-            </div>
+            <Alert variant="success">{this.props.successMessage}</Alert>
+            <Form.Group className="mt-4" controlId="formBasicEmail">
+              <span className="pl-3 pt-1 position-absolute">
+                <FontAwesomeIcon icon={faKey} />
+              </span>
+              <Form.Control
+                size="sm"
+                className="pl-5 confirmCode"
+                type="text"
+                onChange={handleChange}
+                onBlur={handleBlur} 
+                value={values.confirmationCode}
+                name="confirmationCode"
+                placeholder="Confirmation code"
+              />
+              <Error touched={touched.confirmationCode} message={errors.confirmationCode} />
+            </Form.Group>
             <Button
               size="sm"
               className="mb-3 btn btn-primary btn-lg btn-block"
