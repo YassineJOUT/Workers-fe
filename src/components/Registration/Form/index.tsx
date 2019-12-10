@@ -7,7 +7,7 @@ import { ICredentials } from "../../../store/Registration/types";
 import { connect } from "react-redux";
 import { ApplicationState } from "../../../store";
 import { Formik } from "formik";
-
+import { Error } from "../../Error"
 interface ISignupProps {
   signin: Function;
 }
@@ -74,6 +74,8 @@ class RegistrationPage extends Component<IProps> {
               onChange={handleChange}
               />
           </Form.Group>
+          <Error touched={touched.username} message={errors.username} />
+
           <Form.Group className="mt-4" controlId="formBasicEmail">
             <span className="pl-3 pt-1 position-absolute">
               <FontAwesomeIcon icon={faEnvelope} />
@@ -88,6 +90,8 @@ class RegistrationPage extends Component<IProps> {
               onChange={handleChange}
               />
           </Form.Group>
+
+          <Error touched={touched.email} message={errors.email} />
           <Form.Group className="mt-4" controlId="formBasicPassword">
             <span className="pl-3 pt-1 position-absolute">
               <FontAwesomeIcon icon={faLock} />
@@ -102,6 +106,8 @@ class RegistrationPage extends Component<IProps> {
               onChange={handleChange}
               />
           </Form.Group>
+
+          <Error touched={touched.password} message={errors.password} />
           <Form.Group className="mt-4" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Accept All terms & conditions" />
           </Form.Group>

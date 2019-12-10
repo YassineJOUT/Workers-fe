@@ -6,6 +6,7 @@ import { resetPassword } from "../../../store/ResetPassword/actions";
 import { ApplicationState } from "../../../store";
 import { connect } from "react-redux";
 import { Formik } from "formik";
+import { Error } from "../../Error";
 
 interface IResetPasswordProps {
   resetPassword: Function;
@@ -23,7 +24,7 @@ type IProps = IResetPasswordProps & IResetPasswordStateProps;
 class ResetPassword extends Component<IProps> {
 
   handleSubmit = (
-    values: {  password: string},
+    values: {  password1: string,password: string},
     {
       setSubmitting,
       resetForm
@@ -41,7 +42,7 @@ class ResetPassword extends Component<IProps> {
 
   render = () => {
     return (
-      <Formik initialValues={{ password: '' }} onSubmit={this.handleSubmit}>
+      <Formik initialValues={{ password1: '',password: '' }} onSubmit={this.handleSubmit}>
            {( {
           values,
           errors,
@@ -73,8 +74,13 @@ class ResetPassword extends Component<IProps> {
               className="pl-5 password"
               type="password"
               placeholder="Password"
+              name="password1"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.password1}
             />
           </Form.Group>
+          <Error touched={touched.password1} message={errors.password1} />
           <Form.Group className="mt-4" controlId="formBasicPassword">
             <span className="pl-3 pt-1 position-absolute">
               <FontAwesomeIcon icon={faLock} />
@@ -84,10 +90,12 @@ class ResetPassword extends Component<IProps> {
               className="pl-5"
               type="password"
               placeholder="Password"
+              name="password"
               value={values.password}
               onBlur={handleBlur}
               onChange={handleChange}
             />
+          <Error touched={touched.password} message={errors.password} />
           </Form.Group> 
           <Button
               size="sm"
