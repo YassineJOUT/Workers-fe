@@ -62,10 +62,10 @@ class LoginPage extends Component<IProps> {
           isSubmitting
         }) => (
           <Form onSubmit={handleSubmit}>
-            {this.props !== null && this.props.error !== ""
-              ? this.displayAlert(this.props.error)
-              : ""}
-            {JSON.stringify(values)}
+            { this.props.error &&
+               this.displayAlert(this.props.error)
+            }
+            
             <Form.Group className="mt-4" controlId="formBasicEmail">
               <span className="pl-3 pt-1 position-absolute">
                 <FontAwesomeIcon icon={faEnvelope} />

@@ -79,8 +79,9 @@ class ResetPassword extends Component<IProps> {
               onChange={handleChange}
               value={values.password1}
             />
+            <Error touched={touched.password1} message={errors.password1} />
           </Form.Group>
-          <Error touched={touched.password1} message={errors.password1} />
+          
           <Form.Group className="mt-4" controlId="formBasicPassword">
             <span className="pl-3 pt-1 position-absolute">
               <FontAwesomeIcon icon={faLock} />

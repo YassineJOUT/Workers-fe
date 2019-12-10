@@ -70,8 +70,9 @@ class PasswordForgotten extends Component<IProps> {
                   value={values.email}
                   placeholder="Email"
                 />
+                <Error touched={touched.email} message={errors.email} />
               </Form.Group>
-              <Error touched={touched.email} message={errors.email} />
+              
             </div>
             <Button
               size="sm"

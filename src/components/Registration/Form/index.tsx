@@ -7,7 +7,8 @@ import { ICredentials } from "../../../store/Registration/types";
 import { connect } from "react-redux";
 import { ApplicationState } from "../../../store";
 import { Formik } from "formik";
-import { Error } from "../../Error"
+import { Error } from "../../Error";
+import { registrationSchema } from "../../../utilities/validationSchemas";
 interface ISignupProps {
   signin: Function;
 }
@@ -20,9 +21,8 @@ interface ISignupStateProps {
 type IProps = ISignupProps & ISignupStateProps;
 
 class RegistrationPage extends Component<IProps> {
-
   handleSubmit = (
-    values: { username: string, email: string, password: string},
+    values: { username: string; email: string; password: string },
     {
       setSubmitting,
       resetForm
@@ -30,10 +30,10 @@ class RegistrationPage extends Component<IProps> {
   ) => {
     setSubmitting(true);
     const user: ICredentials = {
-        email: values.email,
-        username: values.username,
-        password: values.password,
-        id: ""
+      email: values.email,
+      username: values.username,
+      password: values.password,
+      id: ""
     };
     this.props.signin(user);
     setSubmitting(false);
@@ -42,8 +42,12 @@ class RegistrationPage extends Component<IProps> {
 
   render = () => {
     return (
-      <Formik initialValues={{ username: "", email: "", password: "" }} onSubmit={this.handleSubmit}>
-         {( {
+      <Formik
+        initialValues={{ username: "", email: "", password: "" }}
+        onSubmit={this.handleSubmit}
+        validationSchema={registrationSchema}
+      >
+        {({
           values,
           errors,
           touched,
@@ -51,98 +55,95 @@ class RegistrationPage extends Component<IProps> {
           handleChange,
           handleSubmit,
           isSubmitting
-        }
-         ) =>(
-
-        
-        <Form onSubmit={handleSubmit}>
-          {this.props.error && (
+        }) => (
+          <Form onSubmit={handleSubmit}>
+            {JSON.stringify(values)}
+            {this.props.error && (
               <Alert variant="danger">{this.props.error}</Alert>
-              ) 
-        }
-          <Form.Group className="mt-4" controlId="formBasicText">
-            <span className="pl-3 pt-1 position-absolute">
-              <FontAwesomeIcon icon={faUser} />
-            </span>
-            <Form.Control
-              size="sm"
-              className="pl-5 username"
-              type="text"
-              placeholder="Username"
-              value={values.username}
-              onBlur={handleBlur}
-              onChange={handleChange}
+            )}
+            <Form.Group className="mt-4" controlId="formBasicText">
+              <span className="pl-3 pt-1 position-absolute">
+                <FontAwesomeIcon icon={faUser} />
+              </span>
+              <Form.Control
+                size="sm"
+                className="pl-5 username"
+                type="text"
+                placeholder="Username"
+                value={values.username}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                name="username"
               />
-          </Form.Group>
-          <Error touched={touched.username} message={errors.username} />
 
-          <Form.Group className="mt-4" controlId="formBasicEmail">
-            <span className="pl-3 pt-1 position-absolute">
-              <FontAwesomeIcon icon={faEnvelope} />
-            </span>
-            <Form.Control
-              size="sm"
-              className="pl-5 email"
-              type="email"
-              placeholder="Email"
-              value={values.email}
-              onBlur={handleBlur}
-              onChange={handleChange}
+            <Error touched={touched.username} message={errors.username} />
+            </Form.Group>
+            <Form.Group className="mt-4" controlId="formBasicEmail">
+              <span className="pl-3 pt-1 position-absolute">
+                <FontAwesomeIcon icon={faEnvelope} />
+              </span>
+              <Form.Control
+                size="sm"
+                className="pl-5 email"
+                type="email"
+                placeholder="Email"
+                value={values.email}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                name="email"
               />
-          </Form.Group>
-
-          <Error touched={touched.email} message={errors.email} />
-          <Form.Group className="mt-4" controlId="formBasicPassword">
-            <span className="pl-3 pt-1 position-absolute">
-              <FontAwesomeIcon icon={faLock} />
-            </span>
-            <Form.Control
-              size="sm"
-              className="pl-5 pwd"
-              type="password"
-              placeholder="Password"
-              value={values.password}
-              onBlur={handleBlur}
-              onChange={handleChange}
+              <Error touched={touched.email} message={errors.email} />
+            </Form.Group>
+            
+            <Form.Group className="mt-4" controlId="formBasicPassword">
+              <span className="pl-3 pt-1 position-absolute">
+                <FontAwesomeIcon icon={faLock} />
+              </span>
+              <Form.Control
+                size="sm"
+                className="pl-5 pwd"
+                type="password"
+                placeholder="Password"
+                value={values.password}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                name="password"
               />
-          </Form.Group>
-
-          <Error touched={touched.password} message={errors.password} />
-          <Form.Group className="mt-4" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Accept All terms & conditions" />
-          </Form.Group>
-          <Button
+              <Error touched={touched.password} message={errors.password} />
+            </Form.Group>
+            
+            <Form.Group className="mt-4" controlId="formBasicCheckbox">
+              <Form.Check
+                type="checkbox"
+                label="Accept All terms & conditions"
+              />
+            </Form.Group>
+            <Button
               size="sm"
               className="mb-3 btn btn-primary btn-lg btn-block"
               variant="primary"
               type="submit"
               disabled={this.props.isLoading}
-              >
-                  {this.props.isLoading ? 
-              <span>
-              <Spinner
-                as="span"
-                animation="grow"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-                />
-              Loading...
+            >
+              {this.props.isLoading ? (
+                <span>
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  Loading...
                 </span>
-           
-           : 
-              <span>
-                Create account
-              </span>
-            
-            }
-
-          </Button>
-        
-          <br />
-          Or <a href="/login  ">get connected</a>
-        </Form>
-         )}
+              ) : (
+                <span>Create account</span>
+              )}
+            </Button>
+            <br />
+            Or <a href="/login  ">get connected</a>
+          </Form>
+        )}
       </Formik>
     );
   };
