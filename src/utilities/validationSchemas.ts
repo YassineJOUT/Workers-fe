@@ -10,10 +10,10 @@ const validPassword = Yup.string()
 .max(255,"Too long password")
 .required("Password is required");
 
-const validConfirmationCode = Yup.number()
-.min(4,"Corfirmation code is a 4 digits number")
-.max(4,"Confirmation code must be a 4 digits number")
-.positive("Confirmation code must be positive");
+const validConfirmationCode = Yup.number().
+test('len',"Confirmation code must be a 4 digits number", t => t && t.toString().length === 4)
+.positive("Confirmation code must be positive")
+.required("Confirmation code is required");
 
 const validUsername = Yup.string()
 .min(3,"Username must have more than 3 caracters")
@@ -37,7 +37,8 @@ export const confirmationCodeFormSchema = Yup.object().shape(
 )
 export const resetPasswordSchema = Yup.object().shape({
     password1: validPassword,
-    password: validPassword
+    password: Yup.string()
+    .oneOf([Yup.ref('password1'), null], 'Passwords must match')
 })
 
 export const registrationSchema = Yup.object().shape({

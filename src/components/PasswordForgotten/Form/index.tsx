@@ -55,7 +55,12 @@ class PasswordForgotten extends Component<IProps> {
         }) => (
           <Form onSubmit={handleSubmit}>
             <div>
-              <Alert variant="danger">{this.props.successMessage}</Alert>
+              {
+                this.props.error && <Alert variant="danger">{this.props.error}</Alert>
+              }
+               {
+                this.props.successMessage && <Alert variant="success">{this.props.successMessage}</Alert>
+              }
               <Form.Group className="mt-4" controlId="formBasicEmail">
                 <span className="pl-3 pt-1 position-absolute">
                   <FontAwesomeIcon icon={faEnvelope} />

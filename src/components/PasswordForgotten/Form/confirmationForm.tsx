@@ -5,9 +5,8 @@ import {  faKey } from "@fortawesome/free-solid-svg-icons";
 import { ApplicationState } from "../../../store";
 import { connect } from "react-redux";
 import { passwordForgotten } from "../../../store/PasswordForgotten/actions";
-import _ from "lodash";
 import { Formik } from "formik";
-import { PassordForgottenValidationSchema } from "../../../utilities/validationSchemas";
+import { confirmationCodeFormSchema } from "../../../utilities/validationSchemas";
 import { Error } from '../../Error'
 
 interface IPFProps {
@@ -24,7 +23,7 @@ interface IPFStateProps {
 
 type IProps = IPFProps & IPFStateProps;
 
-class PasswordForgotten extends Component<IProps> {
+class ConfirmationForm extends Component<IProps> {
  
   handleSubmit = (
     values: { confirmationCode: string;},
@@ -42,7 +41,7 @@ class PasswordForgotten extends Component<IProps> {
     const result = (
       <Formik
         initialValues={{ confirmationCode: '' }}
-        validationSchema={PassordForgottenValidationSchema}
+        validationSchema={confirmationCodeFormSchema}
         onSubmit={this.handleSubmit}
       >
         {({
@@ -55,8 +54,12 @@ class PasswordForgotten extends Component<IProps> {
           isSubmitting
         }) => (
           <Form onSubmit={handleSubmit}>
-            <Alert variant="success">{this.props.successMessage}</Alert>
+            {
+              this.props.error && <Alert variant="danger">{this.props.error}</Alert>
+            }
+            
             <Form.Group className="mt-4" controlId="formBasicEmail">
+             
               <span className="pl-3 pt-1 position-absolute">
                 <FontAwesomeIcon icon={faKey} />
               </span>
@@ -114,4 +117,4 @@ const mapStateToProps = ({ login, passwordForgotten }: ApplicationState) => ({
 
 const mapDispatchToProps = { passwordForgotten };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PasswordForgotten);
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmationForm);

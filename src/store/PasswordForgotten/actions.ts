@@ -38,8 +38,11 @@ export const passwordForgotten = (email: string,confirmationCode: string = '') =
                     dispatch(PasswordForgottenSuccess(u.data.message,confirmationCode));
                     history.push('reset-password');
                     }
-                else 
-                dispatch(PasswordForgottenSuccess(u.data.message));
+                else {
+                     dispatch(PasswordForgottenSuccess(u.data.message));
+                     history.push('confirmation-form');
+                }
+               
             }
         ).catch(err => {
             dispatch(PasswordForgottenError('Something went wrong'));

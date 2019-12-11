@@ -3,6 +3,7 @@ import Registration from './pages/Registration';
 import Login from './pages/Login';
 import ForgottenPassord from './pages/PasswordForgotten';
 import ResetPassword from './pages/ResetPassword';
+import ConfirmationFormPage from './pages/confirmationFormPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Router,Route } from 'react-router-dom';
 import { history } from './utilities/history';
@@ -28,6 +29,7 @@ const App: React.FC = () => {
             <Route path="/register/" component={Registration} />
             <Route path="/forgotten-password" component={ForgottenPassord} />
             <Route path="/reset-password" component={ResetPassword} />
+            <Route path="/confirmation-form" component={ConfirmationFormPage} />
             <Route path="/profile" component={Profile} />
 
         </Router>
