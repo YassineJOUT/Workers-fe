@@ -42,6 +42,10 @@ class RegistrationPage extends Component<IProps> {
 
   render = () => {
     return (
+      <div>
+
+      
+      <h4>Fill in the form to register</h4>
       <Formik
         initialValues={{ username: "", email: "", password: "" }}
         onSubmit={this.handleSubmit}
@@ -56,8 +60,8 @@ class RegistrationPage extends Component<IProps> {
           handleSubmit,
           isSubmitting
         }) => (
+          
           <Form onSubmit={handleSubmit}>
-            {JSON.stringify(values)}
             {this.props.error && (
               <Alert variant="danger">{this.props.error}</Alert>
             )}
@@ -145,6 +149,7 @@ class RegistrationPage extends Component<IProps> {
           </Form>
         )}
       </Formik>
+      </div>
     );
   };
 }
