@@ -6,6 +6,7 @@ const headersOptions: {} = { headers: { "Content-Type": "application/x-www-form-
  
 const login = (email: string, password: string) => {
     let params = new URLSearchParams();
+    console.log('login');
     params.append('email', email );
     params.append('password', password );
     return axios.post(endPoint+'signin', params, headersOptions);
